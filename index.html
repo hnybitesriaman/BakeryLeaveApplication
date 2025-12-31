@@ -30,24 +30,45 @@
                 padding: 12px !important;
             }
             
-            /* IC Number fields - stack vertically on mobile */
-            .mobile-flex-wrap {
-                flex-wrap: wrap !important;
+            /* IC Number fields - more compact layout */
+            .ic-container {
+                display: grid !important;
+                grid-template-columns: 1fr auto 1fr auto 1fr;
+                gap: 5px !important;
+                align-items: center;
             }
             
-            .mobile-flex-wrap input {
-                min-width: 100% !important;
-                margin-bottom: 8px;
+            .ic-container input {
+                width: 100% !important;
+                min-width: 0 !important;
+                text-align: center;
             }
             
-            /* Contact Number fields - stack on mobile */
+            .ic-separator {
+                text-align: center;
+                font-weight: bold;
+                color: #666;
+                font-size: 18px;
+            }
+            
+            /* Contact Number fields - compact layout */
             .phone-container {
-                flex-direction: column !important;
+                display: grid !important;
+                grid-template-columns: auto 1fr;
+                gap: 5px !important;
+                align-items: center;
             }
             
             .phone-container input {
-                min-width: 100% !important;
-                margin-bottom: 8px;
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+            
+            .phone-prefix {
+                text-align: center;
+                font-weight: bold;
+                color: #666;
+                padding: 0 8px;
             }
             
             /* Carousel adjustments for mobile */
@@ -98,9 +119,71 @@
                 font-size: 1em !important;
             }
             
+            /* More compact IC fields on very small screens */
+            .ic-container {
+                grid-template-columns: 1fr auto 1fr auto 1fr;
+                gap: 3px !important;
+            }
+            
+            .ic-separator {
+                font-size: 16px;
+                padding: 0 2px;
+            }
+            
+            /* More compact phone fields */
+            .phone-container {
+                grid-template-columns: auto 1fr;
+                gap: 3px !important;
+            }
+            
+            .phone-prefix {
+                padding: 0 5px;
+                font-size: 14px;
+            }
+            
             .carouselDot {
                 width: 8px !important;
                 height: 8px !important;
+            }
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            /* IC Number fields - compact inline layout */
+            .ic-container {
+                display: flex !important;
+                align-items: center !important;
+                gap: 5px !important;
+            }
+            
+            .ic-container input {
+                flex: 1 !important;
+                min-width: 0 !important;
+                text-align: center;
+            }
+            
+            .ic-separator {
+                font-weight: bold;
+                color: #666;
+                padding: 0 5px;
+            }
+            
+            /* Contact Number fields - compact inline layout */
+            .phone-container {
+                display: flex !important;
+                align-items: center !important;
+                gap: 5px !important;
+            }
+            
+            .phone-container input {
+                flex: 1 !important;
+                min-width: 0 !important;
+            }
+            
+            .phone-prefix {
+                font-weight: bold;
+                color: #666;
+                padding: 0 8px;
             }
         }
         
@@ -119,6 +202,21 @@
         
         .carouselDot {
             min-height: 12px; /* Better touch target for dots */
+        }
+        
+        /* Better input styling */
+        input[type="text"], input[type="number"], input[type="email"], select, textarea {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 10px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+            border-color: #4a90e2;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
         }
     </style>
 </head>
@@ -256,29 +354,34 @@
        placeholder="ISI NAMA PENUH ANDA DI SINI..."
        style="text-transform:uppercase;padding:10px;border-radius:8px;border:1px solid #ccc;width:100%;box-sizing:border-box;">
 
-    <!-- IC Number -->
+    <!-- IC Number - COMPACT VERSION -->
 <label style="font-weight:600;">No. Kad Pengenalan (I.C.): <span style="color:red">*</span></label>
-<div class="mobile-flex-wrap" style="display:flex;flex-wrap:wrap;gap:10px;">
+<div class="ic-container">
   <input type="text" name="ic1" id="ic1" placeholder="990123" maxlength="6" required
          oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-         style="padding:10px;border-radius:8px;border:1px solid #ccc;flex:1;min-width:90px;">
+         style="padding:10px;border-radius:6px;border:1px solid #ccc;">
+  <div class="ic-separator">-</div>
   <input type="text" name="ic2" id="ic2" placeholder="12" maxlength="2" required
          oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-         style="padding:10px;border-radius:8px;border:1px solid #ccc;flex:1;min-width:70px;">
+         style="padding:10px;border-radius:6px;border:1px solid #ccc;">
+  <div class="ic-separator">-</div>
   <input type="text" name="ic3" id="ic3" placeholder="0123" maxlength="4" required
          oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-         style="padding:10px;border-radius:8px;border:1px solid #ccc;flex:1;min-width:90px;">
+         style="padding:10px;border-radius:6px;border:1px solid #ccc;">
 </div>
 
-<!-- Contact Number -->
+<!-- Contact Number - COMPACT VERSION -->
 <label style="font-weight:600;">No. Telefon: <span style="color:red">*</span></label>
-<div class="phone-container" style="display:flex;flex-wrap:wrap;gap:10px;">
-  <input type="text" name="phone1" id="phone1" placeholder="012" maxlength="3" required
-         oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-         style="padding:10px;border-radius:8px;border:1px solid #ccc;flex:1;min-width:80px;">
-  <input type="text" name="phone2" id="phone2" placeholder="3456789" required
-         oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-         style="padding:10px;border-radius:8px;border:1px solid #ccc;flex:2;min-width:120px;">
+<div class="phone-container">
+  <div class="phone-prefix">+60</div>
+  <div style="display:flex;gap:5px;">
+    <input type="text" name="phone1" id="phone1" placeholder="12" maxlength="2" required
+           oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+           style="padding:10px;border-radius:6px;border:1px solid #ccc;width:60px;">
+    <input type="text" name="phone2" id="phone2" placeholder="3456789" maxlength="8" required
+           oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+           style="padding:10px;border-radius:6px;border:1px solid #ccc;flex:1;">
+  </div>
 </div>
 
 <!-- Email Address -->
@@ -491,13 +594,19 @@ document.getElementById("leaveForm").addEventListener("submit", function(e) {
   const form = e.target;
   const submitBtn = form.querySelector("button[type='submit']");
 
+  // Format phone number properly
+  const phone1 = form.phone1.value;
+  const phone2 = form.phone2.value;
+  const formattedPhone = `+60${phone1}${phone2}`;
+
   const payload = {
     fullname: form.fullname.value,
     ic1: form.ic1.value,
     ic2: form.ic2.value,
     ic3: form.ic3.value,
-    phone1: form.phone1.value,
-    phone2: form.phone2.value,
+    phone1: phone1,
+    phone2: phone2,
+    phone_full: formattedPhone, // Add formatted phone for Google Sheets
     email: form.email.value.toLowerCase().replace(/\s/g, ''),
     leaveType: form.leaveType.value,
     days: form.days.value,
@@ -511,11 +620,25 @@ document.getElementById("leaveForm").addEventListener("submit", function(e) {
     showStatus("⚠️ Date of Leave cannot contain letters.", "error");
     return;
   }
+  
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(payload.email)) {
     showStatus("⚠️ Please enter a valid email address.", "error");
     return;
   }
+  
+  // Validate IC format
+  if (payload.ic1.length !== 6 || payload.ic2.length !== 2 || payload.ic3.length !== 4) {
+    showStatus("⚠️ Please enter a valid IC number (format: 990123-12-0123).", "error");
+    return;
+  }
+  
+  // Validate phone number
+  if (payload.phone1.length !== 2 || payload.phone2.length < 7 || payload.phone2.length > 8) {
+    showStatus("⚠️ Please enter a valid phone number (format: +60 12-3456789).", "error");
+    return;
+  }
+  
   const requiredFields = ["fullname","ic1","ic2","ic3","phone1","phone2","leaveType","days","dateLeave","reason"];
   for (const field of requiredFields) {
     if (!payload[field]) {
@@ -523,6 +646,7 @@ document.getElementById("leaveForm").addEventListener("submit", function(e) {
       return;
     }
   }
+  
   if (!form.agree.checked) {
     showStatus("⚠️ Please agree to the terms before submitting.", "error");
     return;
@@ -562,6 +686,26 @@ window.addEventListener('resize', function() {
   // Re-initialize carousel on orientation change
   if (document.getElementById('formContainer').style.display === 'block') {
     initCarousel();
+  }
+});
+
+// Auto-advance IC fields
+document.getElementById('ic1').addEventListener('input', function(e) {
+  if (this.value.length === 6) {
+    document.getElementById('ic2').focus();
+  }
+});
+
+document.getElementById('ic2').addEventListener('input', function(e) {
+  if (this.value.length === 2) {
+    document.getElementById('ic3').focus();
+  }
+});
+
+// Auto-advance phone fields
+document.getElementById('phone1').addEventListener('input', function(e) {
+  if (this.value.length === 2) {
+    document.getElementById('phone2').focus();
   }
 });
 
