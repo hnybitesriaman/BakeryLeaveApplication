@@ -509,7 +509,6 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbyCCfnS3ndmvQLtrEIIhE
 document.getElementById("fullname").addEventListener("input", function() {
   this.value = this.value.toUpperCase()
                    .replace(/[^A-Z\s]/g, "")
-                   .replace(/\s+/g, " ")
                    .trimStart();
 });
 
@@ -666,6 +665,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
