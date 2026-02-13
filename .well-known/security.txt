@@ -1,7 +1,0 @@
-Contact: mailto:honeybeebakerysa325@gmail.com
-Encryption: https://hnybitesriaman.github.io/BakeryLeaveApplication/pgp-key.txt
-Acknowledgments: https://hnybitesriaman.github.io/BakeryLeaveApplication/
-Preferred-Languages: en, ms
-Canonical: https://hnybitesriaman.github.io/BakeryLeaveApplication/.well-known/security.txt
-Policy: https://hnybitesriaman.github.io/BakeryLeaveApplication/security-policy.html
-Hiring: https://hnybitesriaman.github.io/BakeryLeaveApplication/jobs
