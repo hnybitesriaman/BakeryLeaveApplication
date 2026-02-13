@@ -639,8 +639,9 @@ if (payload.phone1.length !== 3 || payload.phone2.length < 7) {
     body: formBody,
     headers: { "Content-Type": "application/x-www-form-urlencoded" }
   })
-  .then(response => response.json())
+  .then(response => response.text())
   .then(data => {
+    console.log("Raw response:", data); // For debugging
     showStatus("✅ Leave Application Submitted Successfully!", "success");
     form.reset();
     document.querySelectorAll('textarea').forEach(el => autoResize(el));
@@ -680,6 +681,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
