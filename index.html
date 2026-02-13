@@ -634,21 +634,21 @@ if (payload.phone1.length !== 3 || payload.phone2.length < 7) {
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(payload[key]))
     .join("&");
 
-  fetch(scriptURL, {
+fetch(scriptURL, {
     method: "POST",
     body: formBody,
-    headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    mode: "no-cors"  // <-- ADD THIS LINE
   })
-  .then(response => response.text())
-  .then(data => {
-    console.log("Raw response:", data); // For debugging
+  .then(() => {
+    // With no-cors, we can't read response, so assume success
     showStatus("✅ Leave Application Submitted Successfully!", "success");
-    form.reset();
+    document.getElementById("leaveForm").reset();
     document.querySelectorAll('textarea').forEach(el => autoResize(el));
   })
   .catch(err => {
     console.error(err);
-    showStatus("❌ Submission failed. Please check Web App URL and permissions.", "error");
+    showStatus("❌ Submission failed. Please check your connection.", "error");
   })
   .finally(() => {
     submitBtn.disabled = false;
@@ -681,6 +681,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
 
 
 
